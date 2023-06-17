@@ -31,7 +31,7 @@ python main.py
 
 ## Usage
 
-1. Launch the PassVault application.
+1. Launch the PyPassKeeper application.
 2. Click on the "Add" button to add a new password entry.
 3. Enter the web/source, username, and password for the respective account.
 4. Click "Save" to store the password securely.
@@ -40,13 +40,13 @@ python main.py
 
 ## Security Considerations
 
-- The encryption key used by PassVault is stored locally on your machine and should be kept confidential.
+- The encryption key used by PyPassKeeper is stored locally on your machine and should be kept confidential.
 - It is recommended to use a strong master password to protect access to the PassVault application.
 - Regularly backup the password database file to prevent data loss.
 
 ## Contributing
 
-Contributions are welcome! If you would like to contribute to PassVault, please follow these steps:
+Contributions are welcome! If you would like to contribute to PyPassKeeper, please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
@@ -55,19 +55,15 @@ Contributions are welcome! If you would like to contribute to PassVault, please 
 
 ## License
 
-PassVault is licensed under the [MIT License](https://opensource.org/licenses/MIT). Feel free to use, modify, and distribute this project in accordance with the terms of the license.
+PyPassKeeper is licensed under the [MIT License](https://opensource.org/licenses/MIT). Feel free to use, modify, and distribute this project in accordance with the terms of the license.
 
 ## Acknowledgements
 
-PassVault makes use of the following open-source libraries:
+PyPassKeeper makes use of the following open-source libraries:
 
 - [cryptography](https://cryptography.io/): For encryption and decryption operations.
 - [tkinter](https://docs.python.org/3/library/tkinter.html): For the graphical user interface.
 
 ## Contact
 
-If you have any questions, suggestions, or feedback, please feel free to contact the project maintainer at [email protected]
-
----
-
-You can customize this README according to your specific project details, including additional sections or information that may be relevant.
+If you have any questions, suggestions, or feedback, please feel free to contact the creator.
