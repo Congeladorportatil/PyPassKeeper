@@ -1,7 +1,10 @@
 import tkinter as tk
 import json
 import os
+from cryptography.fernet import Fernet
+import base64
 
+key=b'nYDtsAiyjZzUeBTyHjghCHEMpyETp9eT_RUk1QJMyxw='
 
 def Add():
   win1.withdraw()
@@ -25,17 +28,18 @@ def Add():
   def save_data():
     where = Web.get("1.0", tk.END).strip()
     userfin = user.get("1.0", tk.END).strip()
-    passfin = Password.get("1.0",tk.END).strip()
+    passfin = Password.get("1.0",tk.END).strip().encode("utf-8")
     if not os.path.exists("datos.json") or os.path.getsize("datos.json") == 0:
         contenido_json = []
     else:
         with open("datos.json", "r") as a:
             contenido_json = json.load(a)
-
+    b = Fernet(key).encrypt(passfin)
+    b_64 = base64.b64encode(b).decode('utf-8')
     data = {
         "enterprise": where,
         "userfin": userfin,
-        "passfin": passfin
+        "passfin": b_64
     }
     
     contenido_json.append(data)
@@ -64,15 +68,15 @@ def Search():
   def search_data():
       if not os.path.exists("datos.json") or os.path.getsize("datos.json") == 0:
         contenido_json = []
-
+        havefind_text = "No fue encontrado"
+        tofind_term = None
       else:
 
         with open("datos.json", "r") as a:
             contenido_json = json.load(a)
           
       search_term = source.get("1.0", tk.END).strip()
-      busqueda_encontrada = None
-    
+      tofind_term = None
       for data in contenido_json:
         if data["enterprise"] == search_term:
           tofind_term = data
@@ -83,9 +87,12 @@ def Search():
           
           
       if tofind_term:
+        userfound = data['userfin']
+        passfound_encode = base64.b64decode(data['passfin'])
+        passfound = Fernet(key).decrypt(passfound_encode).decode('utf-8')
         havefind_text = f"This is what has been found with the searched term: {search_term}\n"
-        havefind_text += f"Account: {data['userfin']}\n"
-        havefind_text += f"Password: {data['passfin']}\n"
+        havefind_text += f"Account: {userfound}\n"
+        havefind_text += f"Password: {passfound}\n"
       else:
         havefind_text = "No fue encontrado"
       
